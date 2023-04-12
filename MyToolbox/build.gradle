@@ -39,3 +39,19 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
+
+afterEvaluate{
+    android.libraryVariants.each{variant ->
+        publishing.publications.create(variant.name, MavenPublication){
+            from components.findByName(variant.name)
+
+//            artifact androidJavaDocsJar
+//            artifact androidSourcesJar
+
+            groupId 'com.tutorial.mytoolbox'
+            artifactId = 'mytoolbox'
+            version '1.0.0'
+        }
+
+    }
+}
